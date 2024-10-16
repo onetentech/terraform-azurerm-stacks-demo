@@ -4,7 +4,7 @@ component "resource_group" {
   source   = "Azure/avm-res-resources-resourcegroup/azurerm"
   version  = "0.1.0"
   providers = {
-    azure = azure.configuration[each.key]
+    azurerm = azurerm.configuration[each.key]
   }
   inputs = {
     name     = "avm-res-resources-rg"
