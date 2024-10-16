@@ -21,17 +21,13 @@ required_providers {
   }
 }
 
-provider "azurerm" "configuration" {
+provider "azurerm" "config" {
   for_each = var.env
   config {
     subscription_id = each.value.subscription_id
     features {}
   }
 }
-provider "modtm" "configuration" {
-  config {}
-}
-provider "random" "configuration" {
-  config {}
-}
+provider "modtm" "config" {}
+provider "random" "config" {}
 
