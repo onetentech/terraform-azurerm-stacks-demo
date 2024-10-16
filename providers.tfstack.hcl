@@ -1,11 +1,11 @@
 required_providers {
-    azure = {
+    azurerm = {
         source  = "hashicorp/azurerm"
-        version = ">= 2.0"
+        version = ">= 3.0"
     }
 }
 
-provider "azure" "configuration" {
+provider "azurerm" "configuration" {
     for_each = var.env
     config {
         subscription_id = each.value.subscription_id
