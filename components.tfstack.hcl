@@ -5,6 +5,8 @@ component "resource_group" {
   version  = "0.1.0"
   providers = {
     azurerm = azurerm.configuration[each.key]
+    random  = random.configuration
+    modtm   = modtm.configuration
   }
   inputs = {
     name     = "avm-res-resources-rg"
