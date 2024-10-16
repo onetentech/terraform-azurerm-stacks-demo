@@ -2,7 +2,7 @@
 component "resource_group" {
   for_each = var.env
   source   = "Azure/avm-res-resources-resourcegroup/azurerm"
-  version  = "1.0.0"
+  version  = "0.1.0"
   providers = {
     azure = azure.configuration[each.key]
   }
