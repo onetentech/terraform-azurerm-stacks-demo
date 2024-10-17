@@ -9,7 +9,7 @@ component "resource_group" {
     modtm   = provider.modtm.config
   }
   inputs = {
-    name     = var.name
+    name     = "${var.name}-${each.key}"
     location = var.env[each.key].default_region
   }
 }
