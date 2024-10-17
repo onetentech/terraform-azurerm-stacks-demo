@@ -21,6 +21,7 @@ component "virtual_network" {
     azurerm = provider.azurerm.config
     random  = provider.random.config
     modtm   = provider.modtm.config
+    azapi   = provider.azapi.config
   }
   inputs = {
     name                = "${var.name}-${each.key}"
