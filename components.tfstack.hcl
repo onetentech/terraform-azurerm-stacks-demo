@@ -9,7 +9,7 @@ component "resource_group" {
     modtm   = provider.modtm.config
   }
   inputs = {
-    name     = "avm-res-resources-rg"
+    name     = var.name
     location = var.env[each.key].default_region
   }
 }
