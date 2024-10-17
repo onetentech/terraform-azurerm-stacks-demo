@@ -10,6 +10,6 @@ component "resource_group" {
   }
   inputs = {
     name     = "${var.name}-${each.key}"
-    location = var.env[each.key].default_region
+    location = var.region
   }
 }

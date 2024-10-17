@@ -1,13 +1,14 @@
-variable "env" {
-  type = map(object({
-    environment     = string
-    subscription_id = string
-    default_region  = string
-  }))
-  description = "A map of Azure subscriptions to use for the deployment."
+variable "region" {
+  type        = string
+  description = "The region in which the resource group will be created."
 }
 variable "name" {
   type        = string
   description = "The name of the resource group."
 
+}
+
+variable "env" {
+  type        = set(string)
+  description = "The environment in which the resource group will be created."
 }
