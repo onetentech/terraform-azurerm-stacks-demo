@@ -7,18 +7,12 @@ variable "region" {
 variable "env" {
   type = set(string)
 }
-variable "TFC_ARM_CLIENT_ID" {
+
+variable "identity_token" {
   type      = string
   ephemeral = true
-  default   = ""
 }
-variable "TFC_ARM_CLIENT_SECRET" {
-  type      = string
-  ephemeral = true
-  default   = ""
-}
-variable "TFC_ARM_TENANT_ID" {
-  type      = string
-  ephemeral = true
-  default   = ""
-}
+
+variable "client_id" { type = string }
+variable "subscription_id" { type = string }
+variable "tenant_id" { type = string }

@@ -15,11 +15,15 @@ required_providers {
 
 provider "azurerm" "config" {
   config {
-    client_id       = var.TFC_ARM_CLIENT_ID
-    client_secret   = var.TFC_ARM_CLIENT_SECRET
-    tenant_id       = var.TFC_ARM_TENANT_ID
-    subscription_id = "de706246-7701-45d8-9039-c4d720e7a39b"
     features {}
+    // use_cli should be set to false to yield more accurate error messages on auth failure.
+    use_cli = false
+    // use_oidc must be explicitly set to true when using multiple configurations.
+    use_oidc        = true
+    oidc_token      = var.identity_token
+    client_id       = var.client_id
+    subscription_id = var.subscription_id
+    tenant_id       = var.tenant_id
   }
 }
 provider "modtm" "config" {}
