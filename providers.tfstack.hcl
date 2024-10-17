@@ -11,14 +11,6 @@ required_providers {
     source  = "Azure/modtm"
     version = "0.3.2"
   }
-  time = {
-    source  = "hashicorp/time"
-    version = "~> 0.1"
-  }
-  local = {
-    source  = "hashicorp/local"
-    version = "~> 2.4"
-  }
 }
 
 provider "azurerm" "config" {
