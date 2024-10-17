@@ -12,6 +12,9 @@ variable "identity_token" {
   type      = string
   ephemeral = true
 }
+variable "address_space" {
+  type = list(string)
+}
 
 variable "client_id" { type = string }
 variable "subscription_id" { type = string }
