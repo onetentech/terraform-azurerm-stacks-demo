@@ -5,5 +5,5 @@ variable "region" {
   type = string
 }
 variable "env" {
-  type = list(string)
+  type = set(string)
 }
