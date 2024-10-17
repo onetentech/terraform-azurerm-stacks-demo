@@ -16,3 +16,5 @@ variable "identity_token" {
 variable "client_id" { type = string }
 variable "subscription_id" { type = string }
 variable "tenant_id" { type = string }
+
+# Envs cannot be used for authentication, so we need to pass the identity token to the provider.
