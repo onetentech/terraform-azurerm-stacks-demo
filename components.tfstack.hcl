@@ -4,7 +4,7 @@ component "resource_group" {
   source   = "Azure/avm-res-resources-resourcegroup/azurerm"
   version  = "0.1.0"
   providers = {
-    azurerm = provider.azurerm.config[each.key]
+    azurerm = provider.azurerm.config
     random  = provider.random.config
     modtm   = provider.modtm.config
   }

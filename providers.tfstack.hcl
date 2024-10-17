@@ -22,7 +22,6 @@ required_providers {
 }
 
 provider "azurerm" "config" {
-  for_each = var.env
   config {
     subscription_id = each.value.subscription_id
     features {}
