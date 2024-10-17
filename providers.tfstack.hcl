@@ -15,7 +15,7 @@ required_providers {
 
 provider "azurerm" "config" {
   config {
-
+    tenant_id       = "6e08c3a8-c390-4c74-b63a-561a04e9bab"
     subscription_id = "de706246-7701-45d8-9039-c4d720e7a39b"
     features {}
   }
