@@ -4,7 +4,7 @@ identity_token "azurerm" {
 
 deployment "development" {
   inputs = {
-    env             = ["development"]
+    env             = ["dev"]
     region          = "uksouth"
     name            = "devteststacks"
     identity_token  = identity_token.azurerm.jwt
