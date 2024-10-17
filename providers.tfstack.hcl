@@ -23,7 +23,7 @@ required_providers {
 
 provider "azurerm" "config" {
   config {
-    subscription_id = each.value.subscription_id
+    subscription_id = "de706246-7701-45d8-9039-c4d720e7a39b"
     features {}
   }
 }
