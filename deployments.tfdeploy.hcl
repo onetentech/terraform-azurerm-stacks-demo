@@ -22,6 +22,6 @@ deployment "alz002" {
     identity_token = identity_token.azurerm.jwt
     env            = "alz002"
     location       = "uksouth"
-    address_space  = ["10.10.11.0/24"]
+    address_space  = ["10.10.12.0/24"]
   }
 }

@@ -6,7 +6,7 @@ component "naming" {
     random = provider.random.config
   }
   inputs = {
-    suffix = ["mmu", "connectivity", var.env]
+    suffix = ["mmu", "conn", var.env]
 
   }
 }
@@ -20,7 +20,7 @@ component "resource_group" {
   }
   inputs = {
     name     = component.naming.resource_group.name
-    location = "uksouth"
+    location = var.location
   }
 }
 component "virtual_network" {
