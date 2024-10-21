@@ -1,7 +1,7 @@
 
 deployment "hub" {
   inputs = {
-    env           = ["hub"]
+    env           = ["dev"]
     region        = "uksouth"
     address_space = ["10.10.10.0/24"]
   }
@@ -15,7 +15,7 @@ deployment "alz001" {
 }
 deployment "alz002" {
   inputs = {
-    env           = ["alz002"]
+    env           = ["alz001"]
     region        = "uksouth"
     address_space = ["10.10.11.0/24"]
   }

@@ -23,7 +23,7 @@ component "resource_group" {
   }
   inputs = {
     name     = component.naming[each.key].resource_group.name
-    location = var.region
+    location = var.region[each.key].location
   }
 }
 component "virtual_network" {
@@ -39,7 +39,7 @@ component "virtual_network" {
   inputs = {
     name                = component.naming[each.key].virtual_network.name
     resource_group_name = component.resource_group[each.key].name
-    location            = var.region
+    location            = var.region[each.key].location
     address_space       = var.address_space
   }
 }

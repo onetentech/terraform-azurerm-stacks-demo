@@ -1,10 +1,6 @@
 
 variable "region" {
-  type = map(object({
-    subscription_id = "string"
-    tenant_id       = "string"
-    client_id       = "string"
-  }))
+  type = map(object)
   default = {
     hub = {
       location        = "uksouth"
