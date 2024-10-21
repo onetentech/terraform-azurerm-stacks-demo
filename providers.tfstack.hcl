@@ -18,6 +18,7 @@ required_providers {
 }
 
 provider "azurerm" "config" {
+  for_each = toset("hub", "alz001", "alz002")
   config {
     features {}
     // use_cli should be set to false to yield more accurate error messages on auth failure.
@@ -31,6 +32,7 @@ provider "azurerm" "config" {
   }
 }
 provider "azapi" "config" {
+  for_each = toset("hub", "alz001", "alz002")
   config {
     use_oidc        = true
     oidc_token      = var.identity_token
