@@ -23,7 +23,7 @@ component "resource_group" {
   }
   inputs = {
     name     = component.naming[each.key].resource_group.name
-    location = var.region[each.key].location
+    location = "uksouth"
   }
 }
 component "virtual_network" {
@@ -31,15 +31,15 @@ component "virtual_network" {
   source   = "Azure/avm-res-network-virtualnetwork/azurerm"
   version  = "0.4.2"
   providers = {
-    azurerm = provider.azurerm.config
+    azurerm = provider.azurerm.config["hub"]
     random  = provider.random.config
     modtm   = provider.modtm.config
-    azapi   = provider.azapi.config
+    azapi   = provider.azapi.config["hub"]
   }
   inputs = {
     name                = component.naming[each.key].virtual_network.name
     resource_group_name = component.resource_group[each.key].name
-    location            = var.region[each.key].location
+    location            = var.location
     address_space       = var.address_space
   }
 }
