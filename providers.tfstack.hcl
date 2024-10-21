@@ -17,8 +17,8 @@ required_providers {
   }
 }
 provider "azurerm" "config" {
+  for_each = local.env_config
   config {
-    for_each = var.env
     features {}
     // use_cli should be set to false to yield more accurate error messages on auth failure.
     use_cli = false

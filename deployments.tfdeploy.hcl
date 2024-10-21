@@ -1,7 +1,7 @@
 
 deployment "hub" {
   inputs = {
-    env           = ["dev"]
+    env           = ["hub"]
     region        = "uksouth"
     address_space = ["10.10.10.0/24"]
   }
