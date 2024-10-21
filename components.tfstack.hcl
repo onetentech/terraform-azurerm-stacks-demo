@@ -14,7 +14,7 @@ component "resource_group" {
   source  = "Azure/avm-res-resources-resourcegroup/azurerm"
   version = "0.1.0"
   providers = {
-    azurerm = provider.azurerm.config["hub"]
+    azurerm = provider.azurerm.config[var.env]
     random  = provider.random.config
     modtm   = provider.modtm.config
   }
@@ -27,10 +27,10 @@ component "virtual_network" {
   source  = "Azure/avm-res-network-virtualnetwork/azurerm"
   version = "0.4.2"
   providers = {
-    azurerm = provider.azurerm.config["hub"]
+    azurerm = provider.azurerm.config[var.env]
     random  = provider.random.config
     modtm   = provider.modtm.config
-    azapi   = provider.azapi.config["hub"]
+    azapi   = provider.azapi.config[var.env]
   }
   inputs = {
     name                = component.naming.virtual_network.name
