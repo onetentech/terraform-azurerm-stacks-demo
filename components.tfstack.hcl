@@ -1,7 +1,7 @@
 
 component "naming" {
   for_each = var.env
-  source   = "Azure/avm-res-naming/azurerm"
+  source   = "Azure/naming/azurerm"
   version  = "0.4.1"
   providers = {
     azurerm = provider.azurerm[each.key].config
