@@ -18,15 +18,16 @@ required_providers {
 }
 provider "azurerm" "config" {
   config {
+    for_each = var.env
     features {}
     // use_cli should be set to false to yield more accurate error messages on auth failure.
     use_cli = false
     // use_oidc must be explicitly set to true when using multiple configurations.
     use_oidc        = true
-    oidc_token      = var.identity_token
-    client_id       = var.client_id
-    subscription_id = var.subscription_id
-    tenant_id       = var.tenant_id
+    oidc_token      = { audience = ["api://AzureADTokenExchange"] }
+    client_id       = local.env_config[each.key].client_id
+    subscription_id = local.env_config[each.key].subscription_id
+    tenant_id       = "6e08c3a8-c390-4c74-b63a-561a04e9babb"
   }
 }
 provider "azapi" "config" {
