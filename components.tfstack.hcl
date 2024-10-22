@@ -24,8 +24,9 @@ component "resource_group" {
   }
 }
 removed {
-  source = "Azure/avm-res-network-virtualnetwork/azurerm"
-  from   = component.virtual_network
+  source  = "Azure/avm-res-network-virtualnetwork/azurerm"
+  version = "0.4.2"
+  from    = component.virtual_network
   providers = {
     azurerm = provider.azurerm.config[var.env]
     random  = provider.random.config
