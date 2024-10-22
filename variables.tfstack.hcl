@@ -7,7 +7,8 @@ variable "identity_token" {
   ephemeral = true
 }
 variable "hub_address_space" {
-  type = list(string)
+  type    = list(string)
+  default = []
 }
 variable "location" {
   type    = string
