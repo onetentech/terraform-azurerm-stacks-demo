@@ -23,6 +23,16 @@ component "resource_group" {
     location = var.location
   }
 }
+removed {
+  source = "Azure/avm-res-network-virtualnetwork/azurerm"
+  from   = component.virtual_network
+  providers = {
+    azurerm = provider.azurerm.config[var.env]
+    random  = provider.random.config
+    modtm   = provider.modtm.config
+    azapi   = provider.azapi.config[var.env]
+  }
+}
 component "virtual_network_hub" {
   source  = "Azure/avm-res-network-virtualnetwork/azurerm"
   version = "0.4.2"
