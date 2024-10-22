@@ -16,6 +16,7 @@ variable "location" {
 }
 variable "spoke_networks" {
   type = map(object({
+    name          = string
     address_space = list(string)
   }))
   default = {}

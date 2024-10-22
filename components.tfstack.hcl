@@ -23,6 +23,7 @@ component "resource_group" {
     location = var.location
   }
 }
+
 removed {
   source  = "Azure/avm-res-network-virtualnetwork/azurerm"
   version = "0.4.2"
