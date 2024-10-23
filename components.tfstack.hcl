@@ -41,14 +41,13 @@ component "networks" {
 }
 
 component "peers" {
-  for_each var.peers
   source = "./modules/virtual_network_peers"
   providers = {
     azurerm = provider.azurerm.config[var.env]
   }
   inputs = {
     name                        = "${component.networks.name}-${each.key}"
-    resource_group_name         = component.resource_group.name[
+    resource_group_name         = component.resource_group.name
     virtual_network_name        = component.networks.name
     remote_virtual_network_id   = each.value.remote_virtual_network_resource_id
     allow_forwarded_traffic     = each.value.allow_forwarded_traffic
