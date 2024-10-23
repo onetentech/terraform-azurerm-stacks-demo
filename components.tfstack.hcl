@@ -51,13 +51,9 @@ component "peers" {
     azurerm = provider.azurerm.config[var.env]
   }
   inputs = {
-    name                        = "${component.networks.name}-${each.key}"
+    name                        = "some_name"
     resource_group_name         = component.resource_group.name
     virtual_network_name        = component.networks.name
     remote_virtual_network_id   = component.networks.output["alz001"].vnet_id
-    allow_forwarded_traffic     = each.value.allow_forwarded_traffic
-    allow_virtual_network_access = each.value.allow_virtual_network_access
-    use_remote_gateways         = each.value.use_remote_gateways
-    allow_gateway_transit       = each.value.allow_gateway_transit
   }
 }
