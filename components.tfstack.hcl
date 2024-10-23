@@ -36,6 +36,6 @@ component "networks" {
     name                = component.naming.virtual_network.name
     resource_group_name = component.resource_group.name
     location            = var.location
-    address_space       = var.hub_address_space
+    address_space       = var.address_space
   }
 }
