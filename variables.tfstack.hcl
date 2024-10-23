@@ -13,20 +13,21 @@ variable "location" {
   type    = string
   default = "uksouth"
 }
-variable "networks" {
-  type = object({
-    name          = string
-    address_space = list(string)
-    peerings = optional(map(object({
-      name                               = string
-      address_space                      = list(string)
-      remote_virtual_network_resource_id = string
-      allow_forwarded_traffic            = bool
-      allow_virtual_network_access       = bool
-      do_not_verify_remote_gateways      = bool
-      use_remote_gateways                = bool
-    })))
-  })
+variable "address_space" {
+  type        = list(string)
+  description = "The address space that is used the virtual network"
+}
+variable "network_settings" {
+  type = optional(object({
+    name                               = string
+    address_space                      = list(string)
+    remote_virtual_network_resource_id = string
+    allow_forwarded_traffic            = bool
+    allow_virtual_network_access       = bool
+    do_not_verify_remote_gateways      = bool
+    use_remote_gateways                = bool
+  }))
+  default = {}
 }
 
 # Envs cannot be used for authentication, so we need to pass the identity token to the provider.
