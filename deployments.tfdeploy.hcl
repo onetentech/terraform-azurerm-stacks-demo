@@ -7,6 +7,9 @@ deployment "hub" {
     env            = "hub"
     location       = "uksouth"
     address_space  = ["10.10.10.0/24"]
+    peers = {
+      alz001 = {
+        remote_virtual_network_id   = deployment.alz001.virtual_network_id
   }
 }
 
