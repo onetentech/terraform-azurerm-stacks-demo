@@ -27,8 +27,7 @@ variable "peers" {
     do_not_verify_remote_gateways      = bool
     use_remote_gateways                = bool
   })
-  default  = {}
-  nullable = true
+  default = {}
 }
 
 # Envs cannot be used for authentication, so we need to pass the identity token to the provider.
