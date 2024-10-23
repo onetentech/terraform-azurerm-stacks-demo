@@ -17,8 +17,6 @@ variable "address_space" {
 # This is an optional configuration block that can be used to define virtual network peers.
 variable "peers" {
   type = map(object({
-    address_space                      = list(string)
-    remote_virtual_network_resource_id = string
     allow_forwarded_traffic            = optional(bool, false)
     allow_virtual_network_access       = optional(bool, false)
     do_not_verify_remote_gateways      = optional(bool, false)
