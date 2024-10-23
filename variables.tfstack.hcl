@@ -17,8 +17,8 @@ variable "address_space" {
   type        = list(string)
   description = "The address space that is used the virtual network"
 }
-variable "network_settings" {
-  type = optional(object({
+variable "peers" {
+  type = object({
     name                               = string
     address_space                      = list(string)
     remote_virtual_network_resource_id = string
@@ -26,8 +26,9 @@ variable "network_settings" {
     allow_virtual_network_access       = bool
     do_not_verify_remote_gateways      = bool
     use_remote_gateways                = bool
-  }))
-  default = {}
+  })
+  default  = {}
+  nullable = true
 }
 
 # Envs cannot be used for authentication, so we need to pass the identity token to the provider.
