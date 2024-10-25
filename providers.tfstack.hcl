@@ -37,7 +37,7 @@ locals {
 }
 
 provider "azurerm" "config" {
-  for_each = local.landingzones
+  for_each = var.env
   config {
     features {}
     // use_cli should be set to false to yield more accurate error messages on auth failure.
@@ -45,19 +45,19 @@ provider "azurerm" "config" {
     // use_oidc must be explicitly set to true when using multiple configurations.
     use_oidc        = true
     oidc_token      = var.identity_token
-    client_id       = each.value.client_id
-    subscription_id = each.value.subscription_id
-    tenant_id       = each.value.tenant_id
+    client_id       = local.landingzones[each.value].client_id
+    subscription_id = local.landingzones[each.value].subscription_id
+    tenant_id       = local.landingzones[each.value].tenant_id
   }
 }
 provider "azapi" "config" {
-  for_each = local.landingzones
+  for_each = var.env
   config {
     use_oidc        = true
     oidc_token      = var.identity_token
-    client_id       = each.value.client_id
-    subscription_id = each.value.subscription_id
-    tenant_id       = each.value.tenant_id
+    client_id       = local.landingzones[each.value].client_id
+    subscription_id = local.landingzones[each.value].subscription_id
+    tenant_id       = local.landingzones[each.value].tenant_id
   }
 }
 provider "modtm" "config" {}

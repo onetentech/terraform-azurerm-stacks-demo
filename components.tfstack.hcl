@@ -6,7 +6,7 @@ component "naming" {
     random = provider.random.config
   }
   inputs = {
-    suffix = concat(["mmu", "conn"], var.env)
+    suffix = concat(["mmu", "conn"], tolist(var.env))
 
   }
 }
