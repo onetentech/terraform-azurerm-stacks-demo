@@ -11,10 +11,11 @@ component "naming" {
   }
 }
 component "resource_group" {
-  source  = "Azure/avm-res-resources-resourcegroup/azurerm"
-  version = "0.1.0"
+  for_each = var.env
+  source   = "Azure/avm-res-resources-resourcegroup/azurerm"
+  version  = "0.1.0"
   providers = {
-    azurerm = provider.azurerm.config[var.env]
+    azurerm = provider.azurerm.config[each.key]
     random  = provider.random.config
     modtm   = provider.modtm.config
   }
@@ -26,7 +27,7 @@ component "resource_group" {
 output "vnet_id" {
   type        = string
   description = "The ID of the virtual network"
-  value       = {for k, vnets in  component.networks : k => vnets.outputs.vnet_id}
+  value       = { for k, vnets in component.networks : k => vnets.outputs.vnet_id }
 }
 component "networks" {
   for_each = var.env
@@ -47,6 +48,7 @@ component "networks" {
 }
 
 component "peers" {
+  for_each = var.env
   source = "./modules/virtual_network_peers"
   providers = {
     azurerm = provider.azurerm.config[var.env]
