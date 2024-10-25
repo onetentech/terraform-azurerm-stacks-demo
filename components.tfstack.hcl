@@ -54,6 +54,6 @@ component "peers" {
     name                        = "some_name"
     resource_group_name         = component.resource_group.name
     virtual_network_name        = component.networks.name
-    remote_virtual_network_id   = component.networks.outputs["alz001"].vnet_id
+    remote_virtual_network_id   = component.networks["alz001"].outputs.vnet_id
   }
 }
