@@ -51,7 +51,7 @@ component "peers" {
   for_each = var.env
   source = "./modules/virtual_network_peers"
   providers = {
-    azurerm = provider.azurerm.config[var.env]
+        azurerm = provider.azurerm.config[each.key]
   }
   inputs = {
     name                      = "some_name"
