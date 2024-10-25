@@ -1,5 +1,5 @@
 variable "env" {
-  type = string
+  type = set(string)
 }
 
 variable "identity_token" {

@@ -24,13 +24,14 @@ component "resource_group" {
   }
 }
 output "vnet_id" {
-  type = string
+  type        = string
   description = "The ID of the virtual network"
-  value = component.networks.resource_id
+  value       = {for k, vnets in  component.networks : k => vnets.outputs.vnet_id}
 }
 component "networks" {
-  source  = "Azure/avm-res-network-virtualnetwork/azurerm"
-  version = "0.4.2"
+  for_each = var.env
+  source   = "Azure/avm-res-network-virtualnetwork/azurerm"
+  version  = "0.4.2"
   providers = {
     azurerm = provider.azurerm.config[var.env]
     random  = provider.random.config
@@ -51,9 +52,9 @@ component "peers" {
     azurerm = provider.azurerm.config[var.env]
   }
   inputs = {
-    name                        = "some_name"
-    resource_group_name         = component.resource_group.name
-    virtual_network_name        = component.networks.name
-    remote_virtual_network_id   = component.networks["alz001"].outputs.vnet_id
+    name                      = "some_name"
+    resource_group_name       = component.resource_group.name
+    virtual_network_name      = component.networks.name
+    remote_virtual_network_id = component.networks["alz001"].outputs.vnet_id
   }
 }
