@@ -33,10 +33,10 @@ component "networks" {
   source   = "Azure/avm-res-network-virtualnetwork/azurerm"
   version  = "0.4.2"
   providers = {
-    azurerm = provider.azurerm.config[var.env]
+    azurerm = provider.azurerm.config[each.key]
     random  = provider.random.config
     modtm   = provider.modtm.config
-    azapi   = provider.azapi.config[var.env]
+    azapi   = provider.azapi.config[each.key]
   }
   inputs = {
     name                = component.naming.virtual_network.name
