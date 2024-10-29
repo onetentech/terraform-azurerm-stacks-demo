@@ -51,8 +51,8 @@ component "hub_peers" {
   inputs = {
     name                      = "hub_to_peer_${each.key}"
     resource_group_name       = component.resource_group[each.key].name
-    virtual_network_name      = component.networks["hub"].outputs.vnet_name
-    remote_virtual_network_id = component.networks[each.key].outputs.vnet_id
+    virtual_network_name      = component.networks["hub"].name
+    remote_virtual_network_id = component.networks[each.key].resource_id
     allow_forwarded_traffic   = false
   }
 }
@@ -65,8 +65,8 @@ component "spoke_peers" {
   inputs = {
     name                         = "peer_to_hub_${each.key}"
     resource_group_name          = component.resource_group[each.key].name
-    virtual_network_name         = component.networks[each.key].outputs.vnet_name
-    remote_virtual_network_id    = component.networks["hub"].outputs.vnet_id
+    virtual_network_name         = component.networks[each.key].name
+    remote_virtual_network_id    = component.networks["hub"].resource_id
     allow_forwarded_traffic      = false
     allow_gateway_transit        = true
     use_remote_gateways          = true
