@@ -45,9 +45,9 @@ provider "azurerm" "config" {
     // use_oidc must be explicitly set to true when using multiple configurations.
     use_oidc        = true
     oidc_token      = var.identity_token
-    client_id       = local.landingzones[each.value].client_id
-    subscription_id = local.landingzones[each.value].subscription_id
-    tenant_id       = local.landingzones[each.value].tenant_id
+    client_id       = local.landingzones[each.key].client_id
+    subscription_id = local.landingzones[each.key].subscription_id
+    tenant_id       = local.landingzones[each.key].tenant_id
   }
 }
 provider "azapi" "config" {
@@ -55,9 +55,9 @@ provider "azapi" "config" {
   config {
     use_oidc        = true
     oidc_token      = var.identity_token
-    client_id       = local.landingzones[each.value].client_id
-    subscription_id = local.landingzones[each.value].subscription_id
-    tenant_id       = local.landingzones[each.value].tenant_id
+    client_id       = local.landingzones[each.key].client_id
+    subscription_id = local.landingzones[each.key].subscription_id
+    tenant_id       = local.landingzones[each.key].tenant_id
   }
 }
 provider "modtm" "config" {}
