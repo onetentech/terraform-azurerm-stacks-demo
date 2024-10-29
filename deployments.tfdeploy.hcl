@@ -9,6 +9,10 @@ deployment "uks_hub" {
         address_space = ["10.10.10.0/24"]
         location      = "uksouth"
       }
+      alz001 = {
+        address_space = ["10.10.11.0/24"]
+        location      = "uksouth"
+      }
     }
   }
 }
