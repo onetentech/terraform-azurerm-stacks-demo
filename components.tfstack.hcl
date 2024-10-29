@@ -25,11 +25,6 @@ component "resource_group" {
     location = each.value.location
   }
 }
-output "vnet_id" {
-  type        = string
-  description = "The ID of the virtual network"
-  value       = { for k, vnets in component.networks : k => vnets.outputs.vnet_id }
-}
 component "networks" {
   for_each = var.env
   source   = "Azure/avm-res-network-virtualnetwork/azurerm"
