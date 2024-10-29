@@ -1,12 +1,13 @@
 
 component "naming" {
-  source  = "Azure/naming/azurerm"
-  version = "0.4.1"
+  for_each = var.env
+  source   = "Azure/naming/azurerm"
+  version  = "0.4.1"
   providers = {
     random = provider.random.config
   }
   inputs = {
-    suffix = concat(["mmu", "conn"], tolist(var.env))
+    suffix = concat(["mmu", "conn"], tolist(each.key))
 
   }
 }
@@ -21,7 +22,7 @@ component "resource_group" {
   }
   inputs = {
     name     = component.naming.resource_group.name
-    location = var.location
+    location = each.value.location
   }
 }
 output "vnet_id" {
@@ -42,21 +43,38 @@ component "networks" {
   inputs = {
     name                = component.naming.virtual_network.name
     resource_group_name = component.resource_group.name
-    location            = var.location
-    address_space       = var.address_space
+    location            = each.value.location
+    address_space       = each.value.address_space
   }
 }
-
-component "peers" {
-  for_each = var.env
-  source = "./modules/virtual_network_peers"
+component "hub_peers" {
+  for_each = { for k, value in var.env : k => value if k != "hub" }
+  source   = "./modules/virtual_network_peers"
   providers = {
-        azurerm = provider.azurerm.config[each.key]
+    azurerm = provider.azurerm.config[each.key]
   }
   inputs = {
-    name                      = "some_name"
+    name                      = "hub_to_peer"
     resource_group_name       = component.resource_group.name
-    virtual_network_name      = component.networks.name
-    remote_virtual_network_id = component.networks["alz001"].outputs.vnet_id
+    virtual_network_name      = component.networks["hub"].outputs.vnet_name
+    remote_virtual_network_id = component.networks[each.key].outputs.vnet_id
+    allow_forwarded_traffic   = false
+  }
+}
+component "spoke_peers" {
+  for_each = { for k, value in var.env : k => value if k != "hub" }
+  source   = "./modules/virtual_network_peers"
+  providers = {
+    azurerm = provider.azurerm.config[each.key]
+  }
+  inputs = {
+    name                         = "peer_to_hub "
+    resource_group_name          = component.resource_group.name
+    virtual_network_name         = component.networks[each.key].outputs.vnet_name
+    remote_virtual_network_id    = component.networks["hub"].outputs.vnet_id
+    allow_forwarded_traffic      = false
+    allow_gateway_transit        = true
+    use_remote_gateways          = true
+    allow_virtual_network_access = false
   }
 }

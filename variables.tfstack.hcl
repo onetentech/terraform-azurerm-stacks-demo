@@ -1,28 +1,22 @@
 variable "env" {
-  type = set(string)
+  type = map(object({
+    address_space = list(string)
+    location      = string
+  }))
+  description = <<EOF
+  The environment configuration for the networks, must contain at least one key named "hub".
+  ```hcl
+  env = {
+    hub = {
+      address_space = ["10.10.10.0/24"]
+      location      = "uksouth"
+    }
+  }
+  ```
+  EOF
 }
 
 variable "identity_token" {
   type      = string
   ephemeral = true
 }
-variable "location" {
-  type    = string
-  default = "uksouth"
-}
-variable "address_space" {
-  type        = list(string)
-  description = "The address space that is used the virtual network"
-}
-# This is an optional configuration block that can be used to define virtual network peers.
-variable "peers" {
-  type = map(object({
-    allow_forwarded_traffic            = optional(bool, false)
-    allow_virtual_network_access       = optional(bool, false)
-    do_not_verify_remote_gateways      = optional(bool, false)
-    use_remote_gateways                = optional(bool, false)
-  }))
-  default = {}
-}
-
-# Envs cannot be used for authentication, so we need to pass the identity token to the provider.
