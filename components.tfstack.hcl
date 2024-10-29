@@ -46,7 +46,7 @@ component "hub_peers" {
   for_each = { for k, value in var.env : k => value if k != "hub" }
   source   = "./modules/virtual_network_peers"
   providers = {
-    azurerm = provider.azurerm.config[each.key]
+    azurerm = provider.azurerm.config["hub"]
   }
   inputs = {
     name                      = "hub_to_peer_${each.key}"
