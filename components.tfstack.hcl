@@ -53,7 +53,10 @@ component "hub_peers" {
     resource_group_name       = component.resource_group[each.key].name
     virtual_network_name      = component.networks["hub"].name
     remote_virtual_network_id = component.networks[each.key].resource_id
-    allow_forwarded_traffic   = false
+    allow_forwarded_traffic      = true
+    allow_gateway_transit        = true
+    use_remote_gateways          = false
+    allow_virtual_network_access = true
   }
 }
 component "spoke_peers" {
@@ -67,9 +70,9 @@ component "spoke_peers" {
     resource_group_name          = component.resource_group[each.key].name
     virtual_network_name         = component.networks[each.key].name
     remote_virtual_network_id    = component.networks["hub"].resource_id
-    allow_forwarded_traffic      = false
-    allow_gateway_transit        = true
+    allow_forwarded_traffic      = true
+    allow_gateway_transit        = false
     use_remote_gateways          = true
-    allow_virtual_network_access = false
+    allow_virtual_network_access = true
   }
 }
