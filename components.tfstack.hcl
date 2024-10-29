@@ -53,8 +53,8 @@ component "hub_peers" {
     resource_group_name       = component.resource_group["hub"].name
     virtual_network_name      = component.networks["hub"].name
     remote_virtual_network_id = component.networks[each.key].resource_id
-    allow_forwarded_traffic      = true
-    allow_gateway_transit        = true
+      allow_forwarded_traffic      = true
+      allow_gateway_transit        = true
     use_remote_gateways          = false
     allow_virtual_network_access = true
   }
