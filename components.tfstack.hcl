@@ -50,7 +50,7 @@ component "hub_peers" {
   }
   inputs = {
     name                      = "hub_to_peer_${each.key}"
-    resource_group_name       = component.resource_group[each.key].name
+    resource_group_name       = component.resource_group["hub"].name
     virtual_network_name      = component.networks["hub"].name
     remote_virtual_network_id = component.networks[each.key].resource_id
     allow_forwarded_traffic      = true
