@@ -7,7 +7,7 @@ component "naming" {
     random = provider.random.config
   }
   inputs = {
-    suffix = ["some", "suffix", each.key]
+    suffix = [each.key, "conn", local.region_shortcode[each.value.location]]
 
   }
 }
