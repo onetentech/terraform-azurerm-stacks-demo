@@ -23,6 +23,7 @@ component "resource_group" {
   inputs = {
     name     = component.naming[each.key].resource_group.name
     location = each.value.location
+    tags     = { environment = each.key }
   }
 }
 component "networks" {
